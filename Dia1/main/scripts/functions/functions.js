@@ -1,14 +1,5 @@
-function mainMenu() {
-    console.log("""=============================================
-    Simulador de Gasto Diario
-=============================================
-Seleccione una opción:
+let textMainMenu = "=============================================\n         Simulador de Gasto Diario\n=============================================\nSeleccione una opción:\n\n1. Modificar gastos\n2. Listar gastos\n3. Calcular total de gastos\n4. Generar reporte de gastos\n5. Salir\n=============================================\n"
 
-1. Modificar gastos
-2. Listar gastos
-3. Calcular total de gastos
-4. Generar reporte de gastos
-5. Salir
-=============================================
-""")
-}
+export function mainMenu() {
+    prompt(textMainMenu)
+};

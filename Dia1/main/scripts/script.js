@@ -5,14 +5,15 @@
 
 // Importar funciones
 
+import * as name from "./functions/functions.js";
+
 // Iniciar programa
-console.clear()
-console.log("Bienvenido al seguimiento de gastos\n")
+prompt("Bienvenido al seguimiento de gastos\n Enter para continuar");
 
 // While para mantener el menu activo
-keepMainMenu = false
+let keepMainMenu = true;
 while(keepMainMenu){
-}
-
+    name.mainMenu();
+};
 
 // Developed by: Alan Ramirez - T.I 1096702159
