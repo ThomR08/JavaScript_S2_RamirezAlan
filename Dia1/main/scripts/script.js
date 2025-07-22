@@ -8,12 +8,12 @@
 import * as name from "./functions/functions.js";
 
 // Iniciar programa
-prompt("Bienvenido al seguimiento de gastos\n Enter para continuar");
+alert("Bienvenido al seguimiento de gastos");
 
 // While para mantener el menu activo
 let keepMainMenu = true;
 while(keepMainMenu){
-    name.mainMenu();
+    name.optionNumInRange(name.mainMenu(), 1, 5);
 };
 
 // Developed by: Alan Ramirez - T.I 1096702159
