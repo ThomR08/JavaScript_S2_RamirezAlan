@@ -25,3 +25,8 @@ export function imprimirIngrediente(ingrediente){
     let text = (`Nombre: ${ingrediente["nombre"]}\nDescripción: ${ingrediente["descripcion"]}\nPrecio: ${ingrediente["precio"]}\nStock: ${ingrediente["stock"]}`)
     return text
 }
+
+export function imprimirCategoria(ingrediente){
+    let text = (`Nombre: ${ingrediente["nombre"]}\nDescripción: ${ingrediente["descripcion"]}`)
+    return text
+}

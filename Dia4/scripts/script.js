@@ -108,7 +108,7 @@ while (keepMainMenu){
                 };
                 var keep1 = true
                 while (keep1){
-                    userOption = name.optionNumInRange(`Verifique los valores del Ingrediente:\n\n${name.imprimirIngrediente(Itemp)}\n\nOpciones:\n\n1. Guardar Ingrediente\n2. No guardar\n`, 1, 2);
+                    userOption = name.optionNumInRange(`Verifique los valores del Ingrediente:\n\n${name.imprimirIngrediente(Itemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
                     if (userOption == 1){
                         ingredientesJSON = ingredientesJSON.unshift(Itemp);
                         alert("El Ingrediente se guardo correctamente");
@@ -116,6 +116,39 @@ while (keepMainMenu){
                     } else if(userOption == 2){
                         Itemp = null;
                         alert("El ingrediente no ha sido guardado");
+                        keep1 = false
+                    } else{
+                        alert("Ingresaste una opción fuera de rango o invalida, intenta nuevamente\n");
+                    }
+                }
+            } else if(userOption == 5){
+                keepMenu = false
+                alert("Saliendo al Menu principal")
+            } else{
+                alert("No se permiten decimales")
+            }
+        }
+    } else if (userOption == 2){
+        var keepMenu = true;
+        while (keepMenu){
+            userOption = name.optionNumInRange(name.menuCRUD("Categorías"), 1, 5);
+            if (userOption == 1) {
+                var CNombre = prompt("Ingrese el Nombre de la Categoría:");
+                var CDescripcion = prompt("Ingrese la Descripción de la Categoría:");
+                var Ctemp = {
+                    "nombre": CNombre,
+                    "descripcion": CDescripcion,
+                };
+                var keep1 = true
+                while (keep1){
+                    userOption = name.optionNumInRange(`Verifique los valores de la Categoría:\n\n${name.imprimirCategoria(Ctemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
+                    if (userOption == 1){
+                        categoriasJSON = categoriasJSON.unshift(Ctemp);
+                        alert("La Categoría se guardo correctamente");
+                        keep1 = false
+                    } else if(userOption == 2){
+                        Itemp = null;
+                        alert("La Categoría no ha sido guardada");
                         keep1 = false
                     } else{
                         alert("Ingresaste una opción fuera de rango o invalida, intenta nuevamente\n");
