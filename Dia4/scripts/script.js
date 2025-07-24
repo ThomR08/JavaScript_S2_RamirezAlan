@@ -344,7 +344,7 @@ while (keepMainMenu) {
                             "precio": HPrecio,
                             "chef": HChef
                         };
-                            let keep1 = true;
+                        let keep1 = true;
                         while (keep1) {
                             userOption = name.optionNumInRange(`Verifique los valores de la Hamburguesa:\n\n${name.imprimirHamburguesa(Htemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
                             if (userOption == 1) {
@@ -380,6 +380,100 @@ while (keepMainMenu) {
                         alert("La Hamburguesa ha sido Eliminado")
                     } else if (userOption == 2) {
                         alert("La Hamburguesa no ha sido Eliminado");
+                    } else {
+                        alert("Ingresaste una opción invalida")
+                    }
+                } else {
+                    alert("Ingresaste una opción Invalida");
+                }
+            } else if (userOption == 5) {
+                keepMenu = false
+                alert("Saliendo al Menu principal")
+            } else {
+                alert("No se permiten decimales")
+            }
+        }
+    } else if (userOption == 4) {
+        let keepMenu = true;
+        while (keepMenu) {
+            userOption = name.optionNumInRange(name.menuCRUD("Chefs"), 1, 5);
+            if (userOption == 1) {
+                let CNombre = prompt("Ingrese el Nombre del Chef:");
+                let CEspecialidad = prompt("Ingrese la Especialidad del Chef:");
+                let Ctemp = {
+                    "nombre": CNombre,
+                    "especialidad": CEspecialidad,
+                };
+                let keep1 = true
+                while (keep1) {
+                    userOption = name.optionNumInRange(`Verifique los valores del Chef:\n\n${name.imprimirChef(Ctemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
+                    if (userOption == 1) {
+                        chefsJSON.unshift(Ctemp);
+                        alert("El Chef se guardo correctamente");
+                        keep1 = false
+                    } else if (userOption == 2) {
+                        Ctemp = null;
+                        alert("El Chef no ha sido guardada");
+                        keep1 = false
+                    } else {
+                        alert("Ingresaste una opción fuera de rango o invalida, intenta nuevamente\n");
+                    }
+                }
+            } else if (userOption == 2) {
+                let listaChefs = "\n";
+                chefsJSON.forEach((Element) => listaChefs = listaChefs + name.imprimirChef(Element) + "\n\n");
+                alert(`Ver Chefs:\n${listaChefs}`);
+            } else if (userOption == 3) {
+                let listaChefs = "\n";
+                for (let i = 0; i < chefsJSON.length; i++) {
+                    listaChefs = `${listaChefs}${i + 1}. ${name.imprimirChef(chefsJSON[i])}\n\n`;
+                }
+                let searchIngrediente = prompt(`Ingrese la posición del Chef a modificar:\n${listaChefs}`) - 1;
+                if (searchIngrediente >= 0 && searchIngrediente <= chefsJSON.length) {
+                    userOption = name.optionNumInRange(`Desea Actualizar este Chef:\n\n${searchIngrediente + 1}. ${name.imprimirChef(chefsJSON[searchIngrediente])}\n\nOpciones:\n\n1. Actualizar\n2. No Actualizar\n`, 1, 2);
+                    if (userOption == 1) {
+                        let CNombre = prompt("Ingrese el nuevo Nombre del Chef:");
+                        let CEspecialidad = prompt("Ingrese la nueva Especialidad del Chef:");
+                        let Ctemp = {
+                            "nombre": CNombre,
+                            "especialidad": CEspecialidad,
+                        };
+                        let keep1 = true;
+                        while (keep1) {
+                            userOption = name.optionNumInRange(`Verifique los valores del Chef:\n\n${name.imprimirChef(Ctemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
+                            if (userOption == 1) {
+                                chefsJSON[searchIngrediente] = Ctemp;
+                                alert("El Chef se Actualizo correctamente");
+                                keep1 = false;
+                            } else if (userOption == 2) {
+                                Ctemp = null;
+                                alert("El Chef no ha sido Actualizado");
+                                keep1 = false;
+                            } else {
+                                alert("Ingresaste una opción fuera de rango o invalida, intenta nuevamente\n");
+                            }
+                        }
+                    } else if (userOption == 2) {
+                        alert("El Chef no ha sido Actualizado");
+                    } else {
+                        alert("Ingresaste una opción invalida")
+                    }
+                } else {
+                    alert("Ingresaste una opción Invalida");
+                }
+            } else if (userOption == 4) {
+                let listaChefs = "\n";
+                for (let i = 0; i < chefsJSON.length; i++) {
+                    listaChefs = `${listaChefs}${i + 1}. ${name.imprimirChef(chefsJSON[i])}\n\n`;
+                }
+                let searchIngrediente = (prompt(`Ingrese la posición del Chef a Eliminar:\n${listaChefs}`) - 1);
+                if (searchIngrediente >= 0 && searchIngrediente <= chefsJSON.length - 1) {
+                    userOption = name.optionNumInRange(`Esta seguro de que desea !ELIMINAR¡ este Chef:\n\n${searchIngrediente + 1}. ${name.imprimirChef(chefsJSON[searchIngrediente])}\n\nOpciones:\n\n1. !ELIMINAR¡\n2. No Eliminar\n`, 1, 2);
+                    if (userOption == 1) {
+                        chefsJSON.splice(searchIngrediente, 1)
+                        alert("El Chef ha sido Eliminado")
+                    } else if (userOption == 2) {
+                        alert("El Chef no ha sido Eliminado");
                     } else {
                         alert("Ingresaste una opción invalida")
                     }

@@ -43,3 +43,8 @@ export function imprimirHamburguesa(ingrediente){
     let text = (`Nombre: ${ingrediente["nombre"]}\nCategoría: ${ingrediente["categoria"]}\nIngredientes: ${imprimirListaI(ingrediente["ingredientes"])}\nPrecio: ${ingrediente["precio"]}\nChef: ${ingrediente["chef"]}`)
     return text
 }
+
+export function imprimirChef(ingrediente){
+    let text = (`Nombre: ${ingrediente["nombre"]}\nEspecialidad: ${ingrediente["especialidad"]}`)
+    return text
+}
