@@ -30,3 +30,16 @@ export function imprimirCategoria(ingrediente){
     let text = (`Nombre: ${ingrediente["nombre"]}\nDescripción: ${ingrediente["descripcion"]}`)
     return text
 }
+
+function imprimirListaI(lista){
+    let text = "\n  "
+    lista.forEach((element, index) => {
+        text += ` ${index+1}. ${element}`
+    });
+    return text
+}
+
+export function imprimirHamburguesa(ingrediente){
+    let text = (`Nombre: ${ingrediente["nombre"]}\nCategoría: ${ingrediente["categoria"]}\nIngredientes: ${imprimirListaI(ingrediente["ingredientes"])}\nPrecio: ${ingrediente["precio"]}\nChef: ${ingrediente["chef"]}`)
+    return text
+}
