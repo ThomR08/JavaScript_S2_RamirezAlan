@@ -92,21 +92,21 @@ let keepMainMenu = true;
 while (keepMainMenu) {
     userOption = name.optionNumInRange(name.mainMenu(), 1, 5);
     if (userOption == 1) {
-        var keepMenu = true;
+        let keepMenu = true;
         while (keepMenu) {
             userOption = name.optionNumInRange(name.menuCRUD("Ingredientes"), 1, 5);
             if (userOption == 1) {
-                var INombre = prompt("Ingrese el Nombre del Ingrediente:");
-                var IDescripcion = prompt("Ingrese la Descripción del Ingrediente:");
-                var IPrecio = prompt("Ingrese el Precio del Ingrediente:");
-                var IStock = prompt("Ingrese el Stock del Ingrediente:");
-                var Itemp = {
+                let INombre = prompt("Ingrese el Nombre del Ingrediente:");
+                let IDescripcion = prompt("Ingrese la Descripción del Ingrediente:");
+                let IPrecio = prompt("Ingrese el Precio del Ingrediente:");
+                let IStock = prompt("Ingrese el Stock del Ingrediente:");
+                let Itemp = {
                     "nombre": INombre,
                     "descripcion": IDescripcion,
                     "precio": IPrecio,
                     "stock": IStock
                 };
-                var keep1 = true;
+                let keep1 = true;
                 while (keep1) {
                     userOption = name.optionNumInRange(`Verifique los valores del Ingrediente:\n\n${name.imprimirIngrediente(Itemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
                     if (userOption == 1) {
@@ -122,29 +122,29 @@ while (keepMainMenu) {
                     }
                 }
             } else if (userOption == 2) {
-                var listaIngredientes = "\n";
+                let listaIngredientes = "\n";
                 ingredientesJSON.forEach((Element) => listaIngredientes = listaIngredientes + name.imprimirIngrediente(Element) + "\n\n");
                 alert(`Ver Ingredientes:\n${listaIngredientes}`);
             } else if (userOption == 3) {
-                var listaIngredientes = "\n";
+                let listaIngredientes = "\n";
                 for (let i = 0; i < ingredientesJSON.length; i++) {
                     listaIngredientes = `${listaIngredientes}${i + 1}. ${name.imprimirIngrediente(ingredientesJSON[i])}\n\n`;
                 }
-                var searchIngrediente = prompt(`Ingrese la posición del Ingrediente a modificar:\n${listaIngredientes}`) - 1;
+                let searchIngrediente = prompt(`Ingrese la posición del Ingrediente a modificar:\n${listaIngredientes}`) - 1;
                 if (searchIngrediente >= 0 && searchIngrediente <= ingredientesJSON.length) {
                     userOption = name.optionNumInRange(`Desea Actualizar este Ingrediente:\n\n${searchIngrediente + 1}. ${name.imprimirIngrediente(ingredientesJSON[searchIngrediente])}\n\nOpciones:\n\n1. Actualizar\n2. No Actualizar\n`, 1, 2);
                     if (userOption == 1) {
-                        var INombre = prompt("Ingrese el nuevo Nombre del Ingrediente:");
-                        var IDescripcion = prompt("Ingrese la nueva Descripción del Ingrediente:");
-                        var IPrecio = prompt("Ingrese el nuevo Precio del Ingrediente:");
-                        var IStock = prompt("Ingrese el nuevo Stock del Ingrediente:");
-                        var Itemp = {
+                        let INombre = prompt("Ingrese el nuevo Nombre del Ingrediente:");
+                        let IDescripcion = prompt("Ingrese la nueva Descripción del Ingrediente:");
+                        let IPrecio = prompt("Ingrese el nuevo Precio del Ingrediente:");
+                        let IStock = prompt("Ingrese el nuevo Stock del Ingrediente:");
+                        let Itemp = {
                             "nombre": INombre,
                             "descripcion": IDescripcion,
                             "precio": IPrecio,
                             "stock": IStock
                         };
-                        var keep1 = true;
+                        let keep1 = true;
                         while (keep1) {
                             userOption = name.optionNumInRange(`Verifique los valores del Ingrediente:\n\n${name.imprimirIngrediente(Itemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
                             if (userOption == 1) {
@@ -168,15 +168,15 @@ while (keepMainMenu) {
                     alert("Ingresaste una opción Invalida");
                 }
             } else if(userOption == 4){
-                var listaIngredientes = "\n";
+                let listaIngredientes = "\n";
                 for (let i = 0; i < ingredientesJSON.length; i++) {
                     listaIngredientes = `${listaIngredientes}${i + 1}. ${name.imprimirIngrediente(ingredientesJSON[i])}\n\n`;
                 }
-                var searchIngrediente = prompt(`Ingrese la posición del Ingrediente a Eliminar:\n${listaIngredientes}`) - 1;
-                if (searchIngrediente >= 0 && searchIngrediente <= ingredientesJSON.length) {
+                let searchIngrediente = (prompt(`Ingrese la posición del Ingrediente a Eliminar:\n${listaIngredientes}`) - 1);
+                if (searchIngrediente >= 0 && searchIngrediente <= ingredientesJSON.length-1) {
                     userOption = name.optionNumInRange(`Esta seguro de que desea !ELIMINAR¡ este Ingrediente:\n\n${searchIngrediente + 1}. ${name.imprimirIngrediente(ingredientesJSON[searchIngrediente])}\n\nOpciones:\n\n1. !ELIMINAR¡\n2. No Eliminar\n`, 1, 2);
                     if (userOption == 1) {
-                        ingredientesJSON.splice(searchIngrediente)
+                        ingredientesJSON.splice(searchIngrediente, 1)
                         alert("El ingrediente ha sido Eliminado")
                     } else if (userOption == 2) {
                         alert("El ingrediente no ha sido Eliminado");
@@ -194,17 +194,17 @@ while (keepMainMenu) {
             }
         }
     } else if (userOption == 2) {
-        var keepMenu = true;
+        let keepMenu = true;
         while (keepMenu) {
             userOption = name.optionNumInRange(name.menuCRUD("Categorías"), 1, 5);
             if (userOption == 1) {
-                var CNombre = prompt("Ingrese el Nombre de la Categoría:");
-                var CDescripcion = prompt("Ingrese la Descripción de la Categoría:");
-                var Ctemp = {
+                let CNombre = prompt("Ingrese el Nombre de la Categoría:");
+                let CDescripcion = prompt("Ingrese la Descripción de la Categoría:");
+                let Ctemp = {
                     "nombre": CNombre,
                     "descripcion": CDescripcion,
                 };
-                var keep1 = true
+                let keep1 = true
                 while (keep1) {
                     userOption = name.optionNumInRange(`Verifique los valores de la Categoría:\n\n${name.imprimirCategoria(Ctemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
                     if (userOption == 1) {
@@ -212,7 +212,7 @@ while (keepMainMenu) {
                         alert("La Categoría se guardo correctamente");
                         keep1 = false
                     } else if (userOption == 2) {
-                        Itemp = null;
+                        Ctemp = null;
                         alert("La Categoría no ha sido guardada");
                         keep1 = false
                     } else {
