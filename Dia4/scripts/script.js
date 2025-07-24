@@ -219,6 +219,67 @@ while (keepMainMenu) {
                         alert("Ingresaste una opción fuera de rango o invalida, intenta nuevamente\n");
                     }
                 }
+            } else if (userOption == 2) {
+                let listaCategorias = "\n";
+                categoriasJSON.forEach((Element) => listaCategorias = listaCategorias + name.imprimirCategoria(Element) + "\n\n");
+                alert(`Ver Categorías:\n${listaCategorias}`);
+            } else if (userOption == 3) {
+                let listaCategorias = "\n";
+                for (let i = 0; i < categoriasJSON.length; i++) {
+                    listaCategorias = `${listaCategorias}${i + 1}. ${name.imprimirCategoria(categoriasJSON[i])}\n\n`;
+                }
+                let searchIngrediente = prompt(`Ingrese la posición de la Categoría a modificar:\n${listaCategorias}`) - 1;
+                if (searchIngrediente >= 0 && searchIngrediente <= categoriasJSON.length) {
+                    userOption = name.optionNumInRange(`Desea Actualizar esta Categoría:\n\n${searchIngrediente + 1}. ${name.imprimirCategoria(categoriasJSON[searchIngrediente])}\n\nOpciones:\n\n1. Actualizar\n2. No Actualizar\n`, 1, 2);
+                    if (userOption == 1) {
+                        let CNombre = prompt("Ingrese el nuevo Nombre de la Categoría:");
+                        let CDescripcion = prompt("Ingrese la nueva Descripción de la Categoría:");
+                        let Ctemp = {
+                            "nombre": CNombre,
+                            "descripcion": CDescripcion,
+                        };
+                        let keep1 = true;
+                        while (keep1) {
+                            userOption = name.optionNumInRange(`Verifique los valores de la Categoría:\n\n${name.imprimirCategoria(Ctemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
+                            if (userOption == 1) {
+                                categoriasJSON[searchIngrediente] = Ctemp;
+                                alert("La Categoría se Actualizo correctamente");
+                                keep1 = false;
+                            } else if (userOption == 2) {
+                                Ctemp = null;
+                                alert("La Categoría no ha sido Actualizado");
+                                keep1 = false;
+                            } else {
+                                alert("Ingresaste una opción fuera de rango o invalida, intenta nuevamente\n");
+                            }
+                        }
+                    } else if (userOption == 2) {
+                        alert("La Categoría no ha sido Actualizado");
+                    } else {
+                        alert("Ingresaste una opción invalida")
+                    }
+                } else {
+                    alert("Ingresaste una opción Invalida");
+                }
+            } else if(userOption == 4){
+                let listaCategorias = "\n";
+                for (let i = 0; i < categoriasJSON.length; i++) {
+                    listaCategorias = `${listaCategorias}${i + 1}. ${name.imprimirCategoria(categoriasJSON[i])}\n\n`;
+                }
+                let searchIngrediente = (prompt(`Ingrese la posición de la Categoría a Eliminar:\n${listaCategorias}`) - 1);
+                if (searchIngrediente >= 0 && searchIngrediente <= categoriasJSON.length-1) {
+                    userOption = name.optionNumInRange(`Esta seguro de que desea !ELIMINAR¡ esta Categoría:\n\n${searchIngrediente + 1}. ${name.imprimirCategoria(categoriasJSON[searchIngrediente])}\n\nOpciones:\n\n1. !ELIMINAR¡\n2. No Eliminar\n`, 1, 2);
+                    if (userOption == 1) {
+                        categoriasJSON.splice(searchIngrediente, 1)
+                        alert("La Categoría ha sido Eliminado")
+                    } else if (userOption == 2) {
+                        alert("La Categoría no ha sido Eliminado");
+                    } else {
+                        alert("Ingresaste una opción invalida")
+                    }
+                } else {
+                    alert("Ingresaste una opción Invalida");
+                }
             } else if (userOption == 5) {
                 keepMenu = false
                 alert("Saliendo al Menu principal")
