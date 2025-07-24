@@ -89,11 +89,11 @@ alert("Bienvenido al Gestor de Hamburguesería");
 
 let userOption = null;
 let keepMainMenu = true;
-while (keepMainMenu){
+while (keepMainMenu) {
     userOption = name.optionNumInRange(name.mainMenu(), 1, 5);
-    if (userOption == 1){
+    if (userOption == 1) {
         var keepMenu = true;
-        while (keepMenu){
+        while (keepMenu) {
             userOption = name.optionNumInRange(name.menuCRUD("Ingredientes"), 1, 5);
             if (userOption == 1) {
                 var INombre = prompt("Ingrese el Nombre del Ingrediente:");
@@ -107,75 +107,95 @@ while (keepMainMenu){
                     "stock": IStock
                 };
                 var keep1 = true;
-                while (keep1){
+                while (keep1) {
                     userOption = name.optionNumInRange(`Verifique los valores del Ingrediente:\n\n${name.imprimirIngrediente(Itemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
-                    if (userOption == 1){
+                    if (userOption == 1) {
                         ingredientesJSON.unshift(Itemp);
                         alert("El Ingrediente se guardo correctamente");
                         keep1 = false;
-                    } else if(userOption == 2){
+                    } else if (userOption == 2) {
                         Itemp = null;
                         alert("El ingrediente no ha sido guardado");
                         keep1 = false;
-                    } else{
+                    } else {
                         alert("Ingresaste una opción fuera de rango o invalida, intenta nuevamente\n");
                     }
                 }
-            } else if(userOption == 2){
+            } else if (userOption == 2) {
                 var listaIngredientes = "\n";
-                ingredientesJSON.forEach((Element) => listaIngredientes = listaIngredientes+name.imprimirIngrediente(Element)+"\n\n");
+                ingredientesJSON.forEach((Element) => listaIngredientes = listaIngredientes + name.imprimirIngrediente(Element) + "\n\n");
                 alert(`Ver Ingredientes:\n${listaIngredientes}`);
-            } else if(userOption == 3){
+            } else if (userOption == 3) {
                 var listaIngredientes = "\n";
-                for(let i = 0; i<ingredientesJSON.length; i++){
-                    listaIngredientes = `${listaIngredientes}${i+1}. ${name.imprimirIngrediente(ingredientesJSON[i])}\n\n`;
+                for (let i = 0; i < ingredientesJSON.length; i++) {
+                    listaIngredientes = `${listaIngredientes}${i + 1}. ${name.imprimirIngrediente(ingredientesJSON[i])}\n\n`;
                 }
-                var searchIngrediente = prompt(`Ingrese la posición del Ingrediente a modificar:\n${listaIngredientes}`)-1;
-                if(searchIngrediente >= 0 && searchIngrediente <= ingredientesJSON.length){
-                    userOption = name.optionNumInRange(`Desea Actualizar este Ingrediente:\n\n${searchIngrediente+1}. ${name.imprimirIngrediente(ingredientesJSON[searchIngrediente])}\n\nOpciones:\n\n1. Actualizar\n2. No Actualizar\n`, 1, 2);
-                    if(userOption == 1){
-                var INombre = prompt("Ingrese el nuevo Nombre del Ingrediente:");
-                var IDescripcion = prompt("Ingrese la nueva Descripción del Ingrediente:");
-                var IPrecio = prompt("Ingrese el nuevo Precio del Ingrediente:");
-                var IStock = prompt("Ingrese el nuevo Stock del Ingrediente:");
-                var Itemp = {
-                    "nombre": INombre,
-                    "descripcion": IDescripcion,
-                    "precio": IPrecio,
-                    "stock": IStock
-                };
-                var keep1 = true;
-                while (keep1){
-                    userOption = name.optionNumInRange(`Verifique los valores del Ingrediente:\n\n${name.imprimirIngrediente(Itemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
-                    if (userOption == 1){
-                        ingredientesJSON[searchIngrediente] = Itemp;
-                        alert("El Ingrediente se Actualizo correctamente");
-                        keep1 = false;
-                    } else if(userOption == 2){
-                        Itemp = null;
+                var searchIngrediente = prompt(`Ingrese la posición del Ingrediente a modificar:\n${listaIngredientes}`) - 1;
+                if (searchIngrediente >= 0 && searchIngrediente <= ingredientesJSON.length) {
+                    userOption = name.optionNumInRange(`Desea Actualizar este Ingrediente:\n\n${searchIngrediente + 1}. ${name.imprimirIngrediente(ingredientesJSON[searchIngrediente])}\n\nOpciones:\n\n1. Actualizar\n2. No Actualizar\n`, 1, 2);
+                    if (userOption == 1) {
+                        var INombre = prompt("Ingrese el nuevo Nombre del Ingrediente:");
+                        var IDescripcion = prompt("Ingrese la nueva Descripción del Ingrediente:");
+                        var IPrecio = prompt("Ingrese el nuevo Precio del Ingrediente:");
+                        var IStock = prompt("Ingrese el nuevo Stock del Ingrediente:");
+                        var Itemp = {
+                            "nombre": INombre,
+                            "descripcion": IDescripcion,
+                            "precio": IPrecio,
+                            "stock": IStock
+                        };
+                        var keep1 = true;
+                        while (keep1) {
+                            userOption = name.optionNumInRange(`Verifique los valores del Ingrediente:\n\n${name.imprimirIngrediente(Itemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
+                            if (userOption == 1) {
+                                ingredientesJSON[searchIngrediente] = Itemp;
+                                alert("El Ingrediente se Actualizo correctamente");
+                                keep1 = false;
+                            } else if (userOption == 2) {
+                                Itemp = null;
+                                alert("El ingrediente no ha sido Actualizado");
+                                keep1 = false;
+                            } else {
+                                alert("Ingresaste una opción fuera de rango o invalida, intenta nuevamente\n");
+                            }
+                        }
+                    } else if (userOption == 2) {
                         alert("El ingrediente no ha sido Actualizado");
-                        keep1 = false;
-                    } else{
-                        alert("Ingresaste una opción fuera de rango o invalida, intenta nuevamente\n");
-                    }
-                }
-                    } else if(userOption == 2){
-                    } else{
+                    } else {
                         alert("Ingresaste una opción invalida")
                     }
-                } else{
+                } else {
                     alert("Ingresaste una opción Invalida");
                 }
-            } else if(userOption == 5){
+            } else if(userOption == 4){
+                var listaIngredientes = "\n";
+                for (let i = 0; i < ingredientesJSON.length; i++) {
+                    listaIngredientes = `${listaIngredientes}${i + 1}. ${name.imprimirIngrediente(ingredientesJSON[i])}\n\n`;
+                }
+                var searchIngrediente = prompt(`Ingrese la posición del Ingrediente a Eliminar:\n${listaIngredientes}`) - 1;
+                if (searchIngrediente >= 0 && searchIngrediente <= ingredientesJSON.length) {
+                    userOption = name.optionNumInRange(`Esta seguro de que desea !ELIMINAR¡ este Ingrediente:\n\n${searchIngrediente + 1}. ${name.imprimirIngrediente(ingredientesJSON[searchIngrediente])}\n\nOpciones:\n\n1. !ELIMINAR¡\n2. No Eliminar\n`, 1, 2);
+                    if (userOption == 1) {
+                        ingredientesJSON.splice(searchIngrediente)
+                        alert("El ingrediente ha sido Eliminado")
+                    } else if (userOption == 2) {
+                        alert("El ingrediente no ha sido Eliminado");
+                    } else {
+                        alert("Ingresaste una opción invalida")
+                    }
+                } else {
+                    alert("Ingresaste una opción Invalida");
+                }
+            } else if (userOption == 5) {
                 keepMenu = false
                 alert("Saliendo al Menu principal");
-            } else{
+            } else {
                 alert("No se permiten decimales");
             }
         }
-    } else if (userOption == 2){
+    } else if (userOption == 2) {
         var keepMenu = true;
-        while (keepMenu){
+        while (keepMenu) {
             userOption = name.optionNumInRange(name.menuCRUD("Categorías"), 1, 5);
             if (userOption == 1) {
                 var CNombre = prompt("Ingrese el Nombre de la Categoría:");
@@ -185,31 +205,31 @@ while (keepMainMenu){
                     "descripcion": CDescripcion,
                 };
                 var keep1 = true
-                while (keep1){
+                while (keep1) {
                     userOption = name.optionNumInRange(`Verifique los valores de la Categoría:\n\n${name.imprimirCategoria(Ctemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
-                    if (userOption == 1){
+                    if (userOption == 1) {
                         categoriasJSON.unshift(Ctemp);
                         alert("La Categoría se guardo correctamente");
                         keep1 = false
-                    } else if(userOption == 2){
+                    } else if (userOption == 2) {
                         Itemp = null;
                         alert("La Categoría no ha sido guardada");
                         keep1 = false
-                    } else{
+                    } else {
                         alert("Ingresaste una opción fuera de rango o invalida, intenta nuevamente\n");
                     }
                 }
-            } else if(userOption == 5){
+            } else if (userOption == 5) {
                 keepMenu = false
                 alert("Saliendo al Menu principal")
-            } else{
+            } else {
                 alert("No se permiten decimales")
             }
         }
     } else if (userOption == 5) {
         keepMainMenu = false;
         alert("Gracias por usar el programa\n\n !Nos vemos pronto¡");
-    } else{
+    } else {
         alert("No se permiten decimales")
     }
 };
