@@ -110,7 +110,7 @@ while (keepMainMenu){
                 while (keep1){
                     userOption = name.optionNumInRange(`Verifique los valores del Ingrediente:\n\n${name.imprimirIngrediente(Itemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
                     if (userOption == 1){
-                        ingredientesJSON = ingredientesJSON.unshift(Itemp);
+                        ingredientesJSON.unshift(Itemp);
                         alert("El Ingrediente se guardo correctamente");
                         keep1 = false
                     } else if(userOption == 2){
@@ -121,6 +121,10 @@ while (keepMainMenu){
                         alert("Ingresaste una opción fuera de rango o invalida, intenta nuevamente\n");
                     }
                 }
+            } else if(userOption == 2){
+                var listaIngredientes = "\n"
+                ingredientesJSON.forEach((Element) => listaIngredientes = listaIngredientes+name.imprimirIngrediente(Element)+"\n\n")
+                alert(`Ver Ingredientes:\n${listaIngredientes}`)
             } else if(userOption == 5){
                 keepMenu = false
                 alert("Saliendo al Menu principal")
@@ -143,7 +147,7 @@ while (keepMainMenu){
                 while (keep1){
                     userOption = name.optionNumInRange(`Verifique los valores de la Categoría:\n\n${name.imprimirCategoria(Ctemp)}\n\nOpciones:\n\n1. Guardar\n2. No guardar\n`, 1, 2);
                     if (userOption == 1){
-                        categoriasJSON = categoriasJSON.unshift(Ctemp);
+                        categoriasJSON.unshift(Ctemp);
                         alert("La Categoría se guardo correctamente");
                         keep1 = false
                     } else if(userOption == 2){
