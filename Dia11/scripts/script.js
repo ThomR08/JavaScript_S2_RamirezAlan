@@ -1,14 +1,23 @@
 import * as name from "./functions.js";
 
-const deckId = await name.startGame();
-console.log(deckId);
+const deckId = await name.getReadyGame();
 
-const card1 = await name.drawCard(deckId)
-console.log(card1["code"])
-console.log(card1["image"])
-console.log(card1["remaining"]);
+let dealerHand = [];
+let playerHand = [];
+let cardTemp = {};
+let cardTag = document.createElement("div");
+cardTag.innerHTML
 
-const card2 = await name.drawCard(deckId)
-console.log(card2["code"])
-console.log(card2["image"])
-console.log(card2["remaining"]);
+
+async function startGame(deckId) {
+
+    cardTemp = await name.drawCard();
+    dealerHand.push(cardTemp)
+    cardTemp = await name.drawCard();
+    dealerHand.push(cardTemp)
+
+    cardTemp = await name.drawCard();
+    playerHand.push(cardTemp)
+    cardTemp = await name.drawCard();
+    playerHand.push(cardTemp)
+}

@@ -1,18 +1,353 @@
-*, *::before, *::after{
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+@font-face {
+    font-family: "PressStart2P";
+    src: url(../resources/fonts/PressStart2P-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Audiowide";
+    src: url(../resources/fonts/Audiowide-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
     min-height: 100vh;
+    position: relative;
+    z-index: -5;
+}
+
+.menu {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #0d0d15 100%);
+    position: absolute;
+    z-index: -5;
+}
+
+.github-corner {
+    fill: #fff;
+    color: #0d0d15;
+    position: absolute;
+    top: 0;
+    border: 0;
+    left: 0;
+    transform: scale(-1, 1);
+}
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+
+    0%,
+    100% {
+        transform: rotate(0)
+    }
+
+    20%,
+    60% {
+        transform: rotate(-25deg)
+    }
+
+    40%,
+    80% {
+        transform: rotate(10deg)
+    }
+}
+
+@media (max-width:500px) {
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
+}
+
+.titleGame {
+    font-family: "Audiowide", sans-serif;
+    font-size: min(150px, 12vw);
+    color: #2600ff;
+    text-shadow: 0 0 30px #2600ff;
+}
+
+.textAnimation1 {
+    animation: animation1 10s infinite;
+}
+
+@keyframes animation1 {
+    20% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+
+    21% {
+        color: #000;
+        text-shadow: none;
+    }
+
+    22% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+
+    29% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+
+    30% {
+        color: #000;
+        text-shadow: none;
+    }
+
+    31% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+
+    44% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+
+    45% {
+        color: #000;
+        text-shadow: none;
+    }
+
+    50% {
+        color: #000;
+        text-shadow: none;
+    }
+
+    51% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+
+    70% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+
+    71% {
+        color: #000;
+        text-shadow: none;
+    }
+
+    100% {
+        color: #000;
+        text-shadow: none;
+    }
+}
+
+.textAnimation2 {
+    animation: animation2 10s infinite;
+}
+
+@keyframes animation2 {
+    49% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+
+    50% {
+        color: #000;
+        text-shadow: none;
+    }
+
+    51% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+
+    52% {
+        color: #000;
+        text-shadow: none;
+    }
+
+    53% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+
+    54% {
+        color: #000;
+        text-shadow: none;
+    }
+
+    97% {
+        color: #000;
+        text-shadow: none;
+    }
+
+    98% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+
+    99% {
+        color: #000;
+        text-shadow: none;
+    }
+
+    100% {
+        color: #2600ff;
+        text-shadow: 0 0 30px #2600ff;
+    }
+}
+
+.btnsMenu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+button {
+    width: 200px;
+    aspect-ratio: 2/1;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.btnPlay {
+    color: #0bf4f3;
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    position: relative;
 }
 
-.card{
+.btnPlay span {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 2/1;
+    position: absolute;
+    border: 1px solid #0bf4f3;
+    box-shadow: 0 0 5px #0bf4f3, 0 0 5px #0bf4f3 inset;
+    margin: 0;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btnPlay span:nth-child(1) {
+    box-shadow: 0 0 5px #0bf4f3, 0 0 5px #0bf4f3 inset;
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+    -webkit-transform-origin: 50% 50% -50px;
+    -moz-transform-origin: 50% 50% -50px;
+    transform-origin: 50% 50% -50px;
+}
+
+.btnPlay span:nth-child(2) {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: 50% 50% -50px;
+    -moz-transform-origin: 50% 50% -50px;
+    transform-origin: 50% 50% -50px;
+}
+
+.btnPlay:hover span:nth-child(1) {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+
+.btnPlay:hover span:nth-child(2) {
+    background: #000;
+    color: #000;
+    box-shadow: 0 0 5px #0bf4f3, 0 0 5px #0bf4f3 inset;
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
+}
+
+.credits {
+    font-family: "PressStart2P", sans-serif;
+    font-size: min(1rem, 3.5vw);
+    border-right: .15em solid #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 10s steps(27, start) infinite, blink .75s infinite;
+}
+
+@keyframes typing {
+    20% {
+        width: 26ch;
+    }
+
+    30% {
+        width: 0;
+    }
+
+    40% {
+        width: 0;
+    }
+
+    50% {
+        width: 26ch;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.game {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    z-index: -5;
+    position: relative;
+    display: none;
+}
+
+.hand {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.card {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,42 +355,34 @@ body{
     height: 314px;
     border-radius: 10px;
     position: relative;
-    background-color: beige;
 }
 
-@property --deg{
+@property --deg {
     syntax: '<angle>';
     inherits: true;
     initial-value: 0deg;
 }
 
-.card::after{
+.ACE::after {
     content: "";
     position: absolute;
     box-sizing: content-box;
     height: 100%;
     width: 100%;
-    background: conic-gradient(
-        from var(--deg) at center,
-        #00c3ff,
-        #4d0199,
-        #6300c6,
-        #009dcd
-    );
+    background: conic-gradient(from var(--deg) at center,
+            #00c3ff,
+            #4d0199,
+            #6300c6,
+            #009dcd);
     border-radius: inherit;
     padding: 2px;
-    z-index: -2;
+    z-index: -1;
     filter: blur(10px);
     animation: autoRotate 2s linear infinite;
 }
 
 @keyframes autoRotate {
-    to{
+    to {
         --deg: 360deg;
     }
-}
-
-.card:hover{
-    transform: rotateY(360deg);
-    transition: 1s;
 }
