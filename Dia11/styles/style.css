@@ -1,0 +1,61 @@
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+}
+
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 226px;
+    height: 314px;
+    border-radius: 10px;
+    position: relative;
+    background-color: beige;
+}
+
+@property --deg{
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+}
+
+.card::after{
+    content: "";
+    position: absolute;
+    box-sizing: content-box;
+    height: 100%;
+    width: 100%;
+    background: conic-gradient(
+        from var(--deg) at center,
+        #00c3ff,
+        #4d0199,
+        #6300c6,
+        #009dcd
+    );
+    border-radius: inherit;
+    padding: 2px;
+    z-index: -2;
+    filter: blur(10px);
+    animation: autoRotate 2s linear infinite;
+}
+
+@keyframes autoRotate {
+    to{
+        --deg: 360deg;
+    }
+}
+
+.card:hover{
+    transform: rotateY(360deg);
+    transition: 1s;
+}
