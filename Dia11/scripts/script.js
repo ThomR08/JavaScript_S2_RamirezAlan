@@ -37,6 +37,11 @@ backMenu.addEventListener("click", function() {
     game.classList.remove("enter")
 })
 
+const backMenu2 = document.getElementById("backMenu2")
+backMenu2.addEventListener("click", function() {
+    rules.classList.remove("enter")
+})
+
 const deckId = await name.getReadyGame();
 
 let dealerHand = [];
