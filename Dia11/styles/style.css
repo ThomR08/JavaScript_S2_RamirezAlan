@@ -24,6 +24,7 @@ body {
     min-height: 100vh;
     position: relative;
     z-index: -5;
+    overflow: hidden;
 }
 
 .menu {
@@ -80,7 +81,7 @@ body {
     }
 }
 
-.titleGame {
+.titleMenu {
     font-family: "Audiowide", sans-serif;
     font-size: min(150px, 12vw);
     color: #2600ff;
@@ -223,12 +224,13 @@ body {
     gap: 20px;
 }
 
-button {
+.btnsMenu button {
     width: 200px;
     aspect-ratio: 2/1;
     background: transparent;
     cursor: pointer;
     border: none;
+    position: relative;
 }
 
 .btnPlay {
@@ -249,52 +251,68 @@ button {
     position: absolute;
     border: 1px solid #0bf4f3;
     box-shadow: 0 0 5px #0bf4f3, 0 0 5px #0bf4f3 inset;
-    margin: 0;
-    text-align: center;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-transition: all 0.3s;
     transition: all 0.3s;
+    font-family: "PressStart2P", sans-serif;
+    font-size: min(2rem, 8vw);
 }
 
 .btnPlay span:nth-child(1) {
     box-shadow: 0 0 5px #0bf4f3, 0 0 5px #0bf4f3 inset;
-    -webkit-transform: rotateX(90deg);
-    -moz-transform: rotateX(90deg);
     transform: rotateX(90deg);
-    -webkit-transform-origin: 50% 50% -50px;
-    -moz-transform-origin: 50% 50% -50px;
     transform-origin: 50% 50% -50px;
 }
 
 .btnPlay span:nth-child(2) {
-    -webkit-transform: rotateX(0deg);
-    -moz-transform: rotateX(0deg);
     transform: rotateX(0deg);
-    -webkit-transform-origin: 50% 50% -50px;
-    -moz-transform-origin: 50% 50% -50px;
     transform-origin: 50% 50% -50px;
 }
 
 .btnPlay:hover span:nth-child(1) {
-    -webkit-transform: rotateX(0deg);
-    -moz-transform: rotateX(0deg);
     transform: rotateX(0deg);
 }
 
 .btnPlay:hover span:nth-child(2) {
-    background: #000;
-    color: #000;
     box-shadow: 0 0 5px #0bf4f3, 0 0 5px #0bf4f3 inset;
-    -webkit-transform: rotateX(-90deg);
-    -moz-transform: rotateX(-90deg);
     transform: rotateX(-90deg);
+}
+
+.btnRules {
+    color: #0bf4f3;
+    box-shadow: 0 0 5px #0bf4f3, 0 0 5px #0bf4f3 inset;
+    border: 1px solid #0bf4f3;
+    font-family: "PressStart2P", sans-serif;
+    font-size: min(2rem, 8vw);
+}
+
+.btnRules:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    box-shadow: 0 0 5px #0bf4f3, 0 0 5px #0bf4f3 inset;
+    transition: all 0.3s ease;
+}
+
+.btnRules:hover:after {
+    top: 0;
+    height: 100%;
+}
+
+.skull {
+    width: 30px;
+    position: absolute;
+    right: 5px;
+    bottom: 20%;
+    cursor: help;
 }
 
 .credits {
     font-family: "PressStart2P", sans-serif;
     font-size: min(1rem, 3.5vw);
+    color: #808080;
     border-right: .15em solid #fff;
     white-space: nowrap;
     overflow: hidden;
@@ -327,15 +345,36 @@ button {
 
 .game {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #000;
-    z-index: -5;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #0d0d15 100%);
+    z-index: -4;
     position: relative;
-    display: none;
+    transform: translateX(100%);
+    transition: transform .2s linear;
+}
+
+.table{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 90vw;
+    min-height: 90vh;
+    background: radial-gradient(circle at center, #7C141B 0%, #5D1016 80%);
+    border: 1px solid gold;
+    border-radius: 100px;
+}
+
+.titleGame {
+    font-family: "Audiowide", sans-serif;
+    font-size: min(60px, 6vh, 8vw);
+    color: gold;
+    text-shadow: 0 0 30px gold;
 }
 
 .hand {
@@ -345,16 +384,93 @@ button {
     justify-content: center;
     align-items: center;
     position: relative;
+    padding: 1rem;
+}
+
+#playerHand::after {
+    content: "";
+    width: 100%;
+    height: 20px;
+    border-bottom: 10px solid rgba(121, 121, 121, 0.5);
+}
+
+.actions {
+    display: flex;
+    flex-direction: column-reverse;
+    position: absolute;
+    right: 5px;
+    gap: 5px;
+}
+
+.actions button {
+    width: 200px;
+    aspect-ratio: 2/1;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    position: relative;
+}
+
+.action {
+    height: 100%;
+}
+
+.btnAction {
+    color: gold;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.btnAction span {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 2/1;
+    position: absolute;
+    border: 1px solid gold;
+    box-shadow: 0 0 5px gold, 0 0 5px gold inset;
+    transition: all 0.3s;
+    font-family: "PressStart2P", sans-serif;
+    font-size: min(2rem, 8vw);
+}
+
+.btnAction span:nth-child(1) {
+    box-shadow: 0 0 5px gold, 0 0 5px gold inset;
+    transform: rotateX(90deg);
+    transform-origin: 50% 50% -50px;
+}
+
+.btnAction span:nth-child(2) {
+    transform: rotateX(0deg);
+    transform-origin: 50% 50% -50px;
+}
+
+.btnAction:hover span:nth-child(1) {
+    transform: rotateX(0deg);
+}
+
+.btnAction:hover span:nth-child(2) {
+    box-shadow: 0 0 5px gold, 0 0 5px gold inset;
+    transform: rotateX(-90deg);
 }
 
 .card {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 226px;
-    height: 314px;
     border-radius: 10px;
     position: relative;
+    width: 50px;
+}
+
+.card img {
+    height: 34vh;
+    max-width: 226px;
+    max-height: 314px;
 }
 
 @property --deg {
@@ -385,4 +501,8 @@ button {
     to {
         --deg: 360deg;
     }
+}
+
+.enter{
+    transform: translateX(0);
 }

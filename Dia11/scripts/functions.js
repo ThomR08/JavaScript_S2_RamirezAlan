@@ -48,3 +48,11 @@ export async function drawCard(deckId) {
     })
 }
 
+export function addCard(cardObject) {
+    const cardTag = document.createElement("div");
+    cardTag.classList.add("card");
+    const imgTag = document.createElement("img");
+    imgTag.src = (cardObject["image"]);
+    cardTag.appendChild(imgTag);
+    return cardTag
+}
