@@ -14,6 +14,13 @@ export async function getReadyGame() {
     })
 }
 
+export async function shuffleDeck(deckId) {
+    const xhr = new XMLHttpRequest();
+    const url = `https://deckofcardsapi.com/api/deck/${deckId}/shuffle/`;
+    xhr.open("GET", url, true);
+    xhr.send();
+}
+
 export async function drawCard(deckId) {
     return new Promise((resolve) => {
         const xhr = new XMLHttpRequest();
@@ -26,13 +33,13 @@ export async function drawCard(deckId) {
                 const image = response["cards"][0]["image"];
                 const suit = response["cards"][0]["suit"];
                 let value;
-                if (isNaN(response["cards"][0]["value"])){
-                    if (response["cards"][0]["value"] === "ACE"){
+                if (isNaN(response["cards"][0]["value"])) {
+                    if (response["cards"][0]["value"] === "ACE") {
                         value = 11;
-                    }else{
+                    } else {
                         value = 10;
                     }
-                }else{
+                } else {
                     value = parseInt(response["cards"][0]["value"]);
                 }
                 const cardJSON = {
@@ -46,6 +53,15 @@ export async function drawCard(deckId) {
         }
         xhr.send();
     })
+}
+
+export function addCardHidden(cardObject) {
+    const cardTag = document.createElement("div");
+    cardTag.classList.add("card");
+    const imgTag = document.createElement("img");
+    imgTag.src = "https://deckofcardsapi.com/static/img/back.png";
+    cardTag.appendChild(imgTag);
+    return cardTag
 }
 
 export function addCard(cardObject) {

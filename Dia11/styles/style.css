@@ -229,7 +229,7 @@ body {
     gap: 20px;
 }
 
-.btnsMenu button {
+button {
     width: 200px;
     aspect-ratio: 2/1;
     background: transparent;
@@ -312,6 +312,7 @@ body {
     right: 5px;
     bottom: 20%;
     cursor: help;
+    display: none;
 }
 
 .credits {
@@ -392,6 +393,7 @@ body {
     align-items: center;
     position: relative;
     padding: 1rem;
+    min-height: 34vh;
 }
 
 #playerHand::after {
@@ -512,10 +514,11 @@ body {
 
 .rules {
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    padding: 20px;
+    gap: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background: radial-gradient(ellipse at center, #1a1a2e 0%, #0d0d15 100%);
     z-index: -4;
@@ -524,15 +527,43 @@ body {
     visibility: hidden;
     transform: translateX(100%);
     transition: transform .2s linear;
+    overflow-y: auto;
 }
 
-.rules button {
-    width: 200px;
-    aspect-ratio: 2/1;
+.rules pre{
+    font-family: "PressStart2P", sans-serif;
+    font-size: 1rem;
+    color: #808080;
+    white-space: pre-wrap;
+}
+
+.alert{
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     background: transparent;
-    cursor: pointer;
-    border: none;
-    position: relative;
+    position: absolute;
+    border: 2px solid #0bf4f3;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #0bf4f3, 0 0 10px #0bf4f3 inset;
+    z-index: 10;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: transform .2s linear;
+}
+
+.alert button span img {
+    height: 100%;
+}
+
+.alert h1 {
+    font-family: "Audiowide", sans-serif;
+    font-size: min(150px, 12vw);
+    color: #2600ff;
+    text-shadow: 0 0 30px #2600ff;
 }
 
 .enter{

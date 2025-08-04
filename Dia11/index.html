@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="shortcut icon" href="https://deckofcardsapi.com/static/img/favicon/favicon-96x96.png"
-        type="image/x-icon">
+    <link rel="shortcut icon" href="https://deckofcardsapi.com/static/img/favicon/favicon-96x96.png" type="image/x-icon">
     <title>Blackjack 21</title>
 </head>
 
@@ -32,25 +31,92 @@
     </div>
     <div id="game" class="game">
         <div class="table">
-            <div class="hand" id="dealerHand">
-                <div class="card"><img src="https://deckofcardsapi.com/static/img/4C.png"></div>
-                <div class="card"><img src="https://deckofcardsapi.com/static/img/5H.png"></div>
-            </div>
+            <div class="hand" id="dealerHand"></div>
             <h1 class="titleGame">BlackJack 21</h1>
-            <div class="hand" id="playerHand">
-                <div class="card"><img src="https://deckofcardsapi.com/static/img/7H.png"></div>
-                <div class="card"><img src="https://deckofcardsapi.com/static/img/3C.png"></div>
-            </div>
+            <div class="hand" id="playerHand"></div>
             <div class="actions">
-                <button class="btnAction"><span>Hit</span><span><img src="./resources/img/playing_cards_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" class="action"></span></button>
-                <button class="btnAction"><span>Stand</span><span><img src="./resources/img/front_hand_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" class="action"></span></button>
-                <button id="backMenu" class="btnAction"><span>Back Menu</span><span><img src="./resources/img/logout_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" class="action"></span></button>
+                <button id="hit" class="btnAction"><span>Hit</span><span><img
+                            src="./resources/img/playing_cards_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt=""
+                            class="action"></span></button>
+                <button id="stand" class="btnAction"><span>Stand</span><span><img
+                            src="./resources/img/front_hand_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt=""
+                            class="action"></span></button>
+                <button id="backMenu" class="btnAction"><span>Back Menu</span><span><img
+                            src="./resources/img/logout_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt=""
+                            class="action"></span></button>
             </div>
+        </div>
+        <div id="youLost" class="alert">
+            <h1>You lost</h1>
+            <button id="backMenu2" class="btnPlay"><span>Back Menu</span><span><img
+                        src="./resources/img/logout_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24 blue.svg" alt=""></span></button>
+        </div>
+        <div id="youWon" class="alert">
+            <h1>You won!</h1>
+            <button id="backMenu3" class="btnPlay"><span>Back Menu</span><span><img
+                        src="./resources/img/logout_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24 blue.svg" alt=""></span></button>
+        </div>
+        <div id="tie" class="alert">
+            <h1>Tie</h1>
+            <button id="backMenu4" class="btnPlay"><span>Back Menu</span><span><img
+                        src="./resources/img/logout_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24 blue.svg" alt=""></span></button>
         </div>
     </div>
     <div class="rules" id="rules">
-        <button id="backMenu2" class="btnAction"><span>Back Menu</span><span><img src="./resources/img/logout_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" class="action"></span></button>
-        <h1>Helowis</h1>
+        <button id="backMenu5" class="btnAction"><span>Back Menu</span><span><img
+                    src="./resources/img/logout_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24 blue.svg" alt=""
+                    class="action"></span></button>
+        <pre>
+Blackjack Rules:
+
+
+Blackjack is a card game played against the dealer. The goal is to get a hand that totals 21 points or as close as possible without going over.
+
+
+1. Card Values
+
+    2-10: Face value.
+
+    J, Q, K (Face Cards): 10 points.
+
+    Ace (A): 1 or 11 points, whichever benefits your hand most without busting.
+
+
+2. Game Start
+
+    Both you and the dealer receive two cards.
+
+    Your cards are face up; the dealer has one face up and one hidden.
+
+
+3. Your Turn
+
+    You have two main choices:
+
+    Hit: Take another card. You can hit multiple times.
+
+    Stand: Keep your current hand.
+
+    If you go over 21, you automatically lose.
+
+
+4. Dealer's Turn
+
+    The dealer reveals their hidden card.
+
+    They must hit until their hand totals 17 or more. They cannot hit if they have 17 or more.
+
+    If the dealer goes over 21, you win.
+
+
+5. Winning
+
+    You win if your hand is closer to 21 than the dealer's (without you busting) or if the dealer busts.
+
+    You lose if you go over 21, or if the dealer's hand is closer to 21 than yours.
+
+    Push (Tie) if both of you have the same total.
+        </pre>
     </div>
 </body>
 <script type="module" src="./scripts/script.js"></script>
