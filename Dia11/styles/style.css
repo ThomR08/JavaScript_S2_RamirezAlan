@@ -365,7 +365,7 @@ button {
     transition: transform .2s linear;
 }
 
-.table{
+.table {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -412,7 +412,8 @@ button {
 }
 
 .actions button {
-    width: 200px;
+    width: 30vw;
+    max-width: 200px;
     aspect-ratio: 2/1;
     background: transparent;
     cursor: pointer;
@@ -530,14 +531,14 @@ button {
     overflow-y: auto;
 }
 
-.rules pre{
+.rules pre {
     font-family: "PressStart2P", sans-serif;
     font-size: 1rem;
     color: #808080;
     white-space: pre-wrap;
 }
 
-.alert{
+.alert {
     width: 80vw;
     height: 80vh;
     display: flex;
@@ -566,7 +567,21 @@ button {
     text-shadow: 0 0 30px #2600ff;
 }
 
-.enter{
+.enter {
     visibility: visible;
     transform: translateX(0);
+}
+
+@media screen and (max-width: 950px) {
+    .actions {
+        position: relative;
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card img {
+        width: 34vw;
+        height: auto;
+    }
 }
