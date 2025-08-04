@@ -42,6 +42,14 @@ btnPlay.addEventListener("click", async function () {
     startGame(deckId);
 })
 
+
+const chipsStorage = localStorage.getItem("playerChips")
+let chips = 5000;
+if (chipsStorage !== null) {
+    chips = parseInt(chipsStorage);
+}
+localStorage.setItem("playerChips", chips)
+
 const hit = document.getElementById("hit");
 const stand = document.getElementById("stand")
 
@@ -135,12 +143,14 @@ async function turnDealer(dealerHand, playerHand) {
     }
     if (dealerSum > 21) {
         youWon.classList.add("enter");
+        chips += (bet*2)
         endGame();
     } else if (dealerSum > playerSum) {
         youLost.classList.add("enter");
         endGame();
     } else if (playerSum > dealerSum) {
         youWon.classList.add("enter");
+        chips += (bet*2)
         endGame();
     } else {
         tie.classList.add("enter")
