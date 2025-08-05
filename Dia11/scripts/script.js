@@ -2,15 +2,27 @@ import * as name from "./functions.js";
 
 const game = document.getElementById("game");
 const rules = document.getElementById("rules");
+const Settings = document.getElementById("settings");
 const youLost = document.getElementById("youLost");
 const youWon = document.getElementById("youWon");
 const tie = document.getElementById("tie");
+const bet = document.getElementById("bet");
 const btnPlay = document.getElementById("btnPlay");
-const btnStartGame = document.getElementById("startGame");
+const newGame = document.getElementById("newGame");
+const inputPlayerBet = document.getElementById("playerBet")
+const btnStartGame = document.getElementById("startGame")
+const displayChips = document.getElementById("chips")
+const setChips = document.getElementById("setChips")
+const btnSetChips = document.getElementById("btnSetChips")
+const backMenuBet = document.getElementById("backMenuBet")
 
 const btnRules = document.getElementById("btnRules");
 btnRules.addEventListener("click", function () {
     rules.classList.add("enter");
+})
+const btnSettings = document.getElementById("btnSettings");
+btnSettings.addEventListener("click", function () {
+    Settings.classList.add("enter");
 })
 
 const backMenu = document.getElementById("backMenu");
@@ -33,12 +45,42 @@ const backMenu5 = document.getElementById("backMenu5");
 backMenu5.addEventListener("click", function () {
     rules.classList.remove("enter");
 })
+const backMenu6 = document.getElementById("backMenu6");
+backMenu6.addEventListener("click", function () {
+    Settings.classList.remove("enter");
+})
+btnSetChips.addEventListener("click", function () {
+    let mountSetChips = parseInt(setChips.value, 10)
+    if (isNaN(mountSetChips) || mountSetChips <= 0 || mountSetChips > 99999) { return; }
+    chips = mountSetChips;
+    localStorage.setItem("playerChips", chips);
+    displayChips.innerHTML = chips;
+    Settings.classList.remove("enter");
+})
+backMenuBet.addEventListener("click", function () {
+    bet.classList.remove("enter");
+})
 
 btnPlay.addEventListener("click", function () {
     game.classList.add("enter");
 })
+newGame.addEventListener("click", function () {
+    bet.classList.add("enter");
+    DOMdealerHand.innerHTML = "";
+    DOMplayerHand.innerHTML = "";
+    dealerHand = [];
+    playerHand = [];
+    cardTemp = {};
+})
 btnStartGame.addEventListener("click", function () {
-    startGame(deckId);
+    playerBet = parseInt(inputPlayerBet.value, 10)
+    if (isNaN(playerBet) || playerBet <= 0) { return; }
+    if (playerBet > chips) { return; }
+    chips -= playerBet;
+    localStorage.setItem("playerChips", chips);
+    displayChips.innerHTML = chips;
+    bet.classList.remove("enter")
+    startGame(deckId, playerBet);
 })
 
 
@@ -48,6 +90,8 @@ if (chipsStorage !== null) {
     chips = parseInt(chipsStorage);
 }
 localStorage.setItem("playerChips", chips)
+displayChips.innerHTML = chips;
+let playerBet = 0;
 
 const hit = document.getElementById("hit");
 const stand = document.getElementById("stand")
@@ -78,15 +122,9 @@ stand.addEventListener("click", async function () {
 })
 
 async function startGame(deckId) {
-    btnStartGame.disabled = true;
-    backMenu.disabled = false;
+    newGame.disabled = true;
     hit.disabled = false;
     stand.disabled = false;
-    DOMdealerHand.innerHTML = "";
-    DOMplayerHand.innerHTML = "";
-    dealerHand = [];
-    playerHand = [];
-    cardTemp = {};
     await name.shuffleDeck(deckId)
 
     cardTemp = await name.drawCard(deckId);
@@ -116,7 +154,6 @@ function sumHand(Hand) {
         sumHand += element["value"];
     });
     sumHand = AcesReduce(sumHand, AcesSumHand);
-    console.log(sumHand)
     return sumHand;
 }
 
@@ -150,26 +187,32 @@ async function turnDealer(dealerHand, playerHand) {
     }
     if (dealerSum > 21) {
         youWon.classList.add("enter");
-        chips += (bet * 2)
+        chips += playerBet * 2;
+        displayChips.innerHTML = chips;
+        localStorage.setItem("playerChips", chips);
         endGame();
     } else if (dealerSum > playerSum) {
         youLost.classList.add("enter");
         endGame();
     } else if (playerSum > dealerSum) {
         youWon.classList.add("enter");
-        chips += (bet * 2)
+        chips += playerBet * 2;
+        displayChips.innerHTML = chips;
+        localStorage.setItem("playerChips", chips);
         endGame();
     } else {
         tie.classList.add("enter")
+        chips += playerBet;
+        displayChips.innerHTML = chips;
+        localStorage.setItem("playerChips", chips);
         endGame();
     }
 }
 
 function endGame() {
-    backMenu.disabled = true;
     hit.disabled = true;
     stand.disabled = true;
-    btnStartGame.disabled = false;
+    newGame.disabled = false;
     setTimeout(function () { hit.disabled = true; }, 1000);
     setTimeout(function () { hit.disabled = true; }, 1500);
     setTimeout(function () { stand.disabled = true; }, 1000);

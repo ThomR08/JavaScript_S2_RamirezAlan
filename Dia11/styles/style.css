@@ -86,6 +86,14 @@ body {
     }
 }
 
+.settings {
+    width: 30px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
 .titleMenu {
     font-family: "Audiowide", sans-serif;
     font-size: min(150px, 12vw);
@@ -385,6 +393,27 @@ button {
     text-shadow: 0 0 30px gold;
 }
 
+.containChips {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    left: 40px;
+}
+
+.containChips img {
+    width: 2.5rem;
+}
+
+.containChips h1 {
+    font-family: "PressStart2P", sans-serif;
+    font-size: min(1.5rem, 8vw);
+    color: gold;
+}
+
 .hand {
     display: flex;
     flex-direction: row;
@@ -590,6 +619,47 @@ button {
     font-size: min(150px, 12vw);
     color: #2600ff;
     text-shadow: 0 0 30px #2600ff;
+}
+
+.title2 {
+    font-family: "Audiowide", sans-serif;
+    font-size: min(150px, 8vw);
+    color: #2600ff;
+    text-shadow: 0 0 30px #2600ff;
+}
+
+input {
+    width: 200px;
+    aspect-ratio: 2/1;
+    background: transparent;
+    border: none;
+    position: relative;
+    text-align: center;
+    border: 1px solid #2600ff;
+    box-shadow: 0 0 5px #2600ff, 0 0 5px #2600ff inset;
+    transition: all 0.3s;
+    font-family: "PressStart2P", sans-serif;
+    font-size: min(2rem, 8vw);
+    color: #2600ff;
+}
+
+input:focus {
+    outline: none;
+}
+
+#btnSetChips span img {
+    height: 100%;
+}
+
+.backMenuBet {
+    width: 40px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border: 1px solid #2600ff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #2600ff, 0 0 5px #2600ff inset;
+    cursor: pointer;
 }
 
 .enter {
