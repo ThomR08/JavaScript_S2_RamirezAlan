@@ -5,6 +5,8 @@ const rules = document.getElementById("rules");
 const youLost = document.getElementById("youLost");
 const youWon = document.getElementById("youWon");
 const tie = document.getElementById("tie");
+const btnPlay = document.getElementById("btnPlay");
+const btnStartGame = document.getElementById("startGame");
 
 const btnRules = document.getElementById("btnRules");
 btnRules.addEventListener("click", function () {
@@ -18,27 +20,24 @@ backMenu.addEventListener("click", function () {
 const backMenu2 = document.getElementById("backMenu2");
 backMenu2.addEventListener("click", function () {
     youLost.classList.remove("enter");
-    startGame(deckId)
 })
 const backMenu3 = document.getElementById("backMenu3");
 backMenu3.addEventListener("click", function () {
     youWon.classList.remove("enter");
-    startGame(deckId)
 })
 const backMenu4 = document.getElementById("backMenu4");
 backMenu4.addEventListener("click", function () {
     tie.classList.remove("enter");
-    startGame(deckId)
 })
 const backMenu5 = document.getElementById("backMenu5");
 backMenu5.addEventListener("click", function () {
     rules.classList.remove("enter");
 })
 
-
-const btnPlay = document.getElementById("btnPlay");
-btnPlay.addEventListener("click", async function () {
+btnPlay.addEventListener("click", function () {
     game.classList.add("enter");
+})
+btnStartGame.addEventListener("click", function () {
     startGame(deckId);
 })
 
@@ -61,17 +60,25 @@ let dealerHand = [];
 let playerHand = [];
 let cardTemp = {};
 
+hit.disabled = true;
+stand.disabled = true;
+
 hit.addEventListener("click", async function () {
+    hit.disabled = true;
+    setTimeout(function () { hit.disabled = false; }, 1000);
     cardTemp = await name.drawCard(deckId);
     playerHand.push(cardTemp);
     DOMplayerHand.appendChild(name.addCard(cardTemp));
     comprobare(playerHand, dealerHand);
 })
 stand.addEventListener("click", async function () {
+    stand.disabled = true;
+    setTimeout(function () { stand.disabled = false; }, 1000);
     turnDealer(dealerHand, playerHand)
 })
 
 async function startGame(deckId) {
+    btnStartGame.disabled = true;
     backMenu.disabled = false;
     hit.disabled = false;
     stand.disabled = false;
@@ -135,7 +142,7 @@ async function turnDealer(dealerHand, playerHand) {
     DOMdealerHand.firstChild.firstChild.src = dealerHand[0]["image"];
     let dealerSum = sumHand(dealerHand);
     let playerSum = sumHand(playerHand)
-    while ( dealerSum < 17) {
+    while (dealerSum < 17) {
         cardTemp = await name.drawCard(deckId);
         dealerHand.push(cardTemp);
         DOMdealerHand.appendChild(name.addCard(cardTemp));
@@ -143,14 +150,14 @@ async function turnDealer(dealerHand, playerHand) {
     }
     if (dealerSum > 21) {
         youWon.classList.add("enter");
-        chips += (bet*2)
+        chips += (bet * 2)
         endGame();
     } else if (dealerSum > playerSum) {
         youLost.classList.add("enter");
         endGame();
     } else if (playerSum > dealerSum) {
         youWon.classList.add("enter");
-        chips += (bet*2)
+        chips += (bet * 2)
         endGame();
     } else {
         tie.classList.add("enter")
@@ -162,4 +169,9 @@ function endGame() {
     backMenu.disabled = true;
     hit.disabled = true;
     stand.disabled = true;
+    btnStartGame.disabled = false;
+    setTimeout(function () { hit.disabled = true; }, 1000);
+    setTimeout(function () { hit.disabled = true; }, 1500);
+    setTimeout(function () { stand.disabled = true; }, 1000);
+    setTimeout(function () { stand.disabled = true; }, 1500);
 }
