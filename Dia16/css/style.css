@@ -76,7 +76,6 @@ button{
 
 .terminado img{
     width: 50px;
-    margin-left: 20px ;
     margin-right: 20px;
     background-color: white;
     border-radius: 100%;
@@ -84,6 +83,13 @@ button{
 
 .eliminar img{
     width: 50px;
+    background-color: white;
+    border-radius: 100%;
+}
+.triLinexd img{
+    width: 50px;
+    margin-left: 20px ;
+    margin-right: 20px;
     background-color: white;
     border-radius: 100%;
 }
@@ -109,7 +115,6 @@ button{
 
 .terminadoNegativo img{
     width: 50px;
-    margin-left: 20px ;
     margin-right: 20px;
     background-color: rgba(255, 255, 255, 0.331);
     border-radius: 100%;
@@ -118,6 +123,13 @@ button{
 .eliminadoNegativo img{
     width: 50px;
     background-color: rgba(255, 255, 255, 0.366);
+    border-radius: 100%;
+}
+.triLineNegativo img{
+    width: 50px;
+    margin-left: 20px ;
+    margin-right: 20px;
+    background-color: rgba(255, 255, 255, 0.331);
     border-radius: 100%;
 }
 .infoTextNegativo p{

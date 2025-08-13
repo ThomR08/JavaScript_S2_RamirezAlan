@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-
         let data = await res.json();
         return data;
     }
@@ -46,6 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${cap["task"]}</p>
             </div>
             <div class="botones">
+                <div class="triLineNegativo">
+                    <img src="./storage/img/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" status="${cap["status"]}" data-id="${cap["id"]}" alt="" class='triLine'>
+                </div>
                 <div class="terminadoNegativo">
                     <img src="./storage/img/pngwing.com (2).png" status="${cap["status"]}" data-id="${cap["id"]}" alt="" class='completado'>
                 </div>
@@ -62,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${cap["task"]}</p>
             </div>
             <div class="botones">
+            <div class="triLinexd">
+                <img src="./storage/img/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" status="${cap["status"]}" data-id="${cap["id"]}" alt="" class='triLine'>
+            </div>
                 <div class="terminado">
                     <img src="./storage/img/pngwing.com (2).png" status="${cap["status"]}" data-id="${cap["id"]}"  alt="" class='completado'>
                 </div>
@@ -77,6 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         document.querySelectorAll('.eliminado').forEach(button => {
             button.addEventListener('click', botonEliminado);
+        });
+        document.querySelectorAll('.triLine').forEach(button => {
+            button.addEventListener('click', botonTriLine);
+            console.log(button.parentNode.parentNode.parentNode.parentNode);
         });
     }
     fetchData().then(data => {
@@ -96,16 +105,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     status: 'ready'
                 })
             });
-        }else{
-            await fetch(`https://689a18d1fed141b96ba1debf.mockapi.io/JustDoIt/JustDoIt/${id}`,{
-            method: 'PUT',
-            headers :{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({
-                status:'On hold'
-            })
-        });
+        } else {
+            await fetch(`https://689a18d1fed141b96ba1debf.mockapi.io/JustDoIt/JustDoIt/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    status: 'On hold'
+                })
+            });
         }
 
         const data = await fetchData();
@@ -118,5 +127,55 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const data = await fetchData();
         displayCapsula(data);
+    }
+    async function botonTriLine() {
+        const id = event.target.getAttribute('data-id');
+        let data = await fetch(`https://689a18d1fed141b96ba1debf.mockapi.io/JustDoIt/JustDoIt/${id}`, {
+            method: 'GET'
+        });
+        capsula = await data.json();
+        console.log(capsula["subTasks"])
+        capsula["subTasks"].forEach(cap => {
+            console.log("holiwis");
+            const capDiv = document.createElement('div')
+            if (cap.status === "ready") {
+                capDiv.classList.add('capsulaNegativa');
+                capDiv.innerHTML = `
+                <div class="infoTextNegativo">
+                <p>${cap["task"]}</p>
+            </div>
+            <div class="botones">
+                <div class="triLineNegativo">
+                    <img src="./storage/img/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" status="${cap["status"]}" data-id="${cap["id"]}" alt="" class='triLine'>
+                </div>
+                <div class="terminadoNegativo">
+                    <img src="./storage/img/pngwing.com (2).png" status="${cap["status"]}" data-id="${cap["id"]}" alt="" class='completado'>
+                </div>
+                <div class="eliminadoNegativo">
+                    <img src="./storage/img/pngwing.com (4).png" status="${cap["status"]}" data-id="${cap["id"]}" alt="" class='eliminado'>
+                </div>
+            </div>
+                `
+            } else if (cap.status === "On hold") {
+                capDiv.classList.add('capsula');
+                capDiv.innerHTML = `
+                 <div class="capsula">
+            <div class="infoText">
+                <p>${cap["task"]}</p>
+            </div>
+            <div class="botones">
+            <div class="triLine">
+                <img src="./storage/img/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" status="${cap["status"]}" data-id="${cap["id"]}" alt="" class='triLine'>
+            </div>
+                <div class="terminado">
+                    <img src="./storage/img/pngwing.com (2).png" status="${cap["status"]}" data-id="${cap["id"]}"  alt="" class='completado'>
+                </div>
+                <div class="eliminar">
+                    <img src="./storage/img/pngwing.com (4).png" status="${cap["status"]}" data-id="${cap["id"]}" alt="" class='eliminado'>
+                </div>
+            </div>`
+            }
+        });
+        datosContenedor.appendChild(capDiv);
     }
 });
